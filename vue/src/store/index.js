@@ -77,12 +77,10 @@ const store = createStore(
           if(article_type_id==1) {
             commit("setNewsList",res.data);
             commit("setListLoading", false);
-            console.log(res)
             return res;
           } else if (article_type_id==2) {
             commit("setStoryList",res.data);
             commit("setListLoading", false);
-            console.log(res)
             return res;
           }
         })

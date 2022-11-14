@@ -7,7 +7,6 @@ const actions = {
         .then((res)=>{
           commit("SET_CURRENT",res.data);
           commit("SET_CURRENT_LOADING", false);
-          console.log(res.data)
           return res;
         })
         .catch((err)=>{
@@ -23,7 +22,6 @@ const actions = {
         .then((res)=>{
           commit("SET_LIST",res.data);
           commit("SET_LIST_LOADING", false);
-          console.log(res.data)
           return res;
         })
         .catch((err)=>{
@@ -39,7 +37,6 @@ const actions = {
         .then((res)=>{
           commit("SET_CURRENT",res.data);
           commit("SET_CURRENT_LOADING", false);
-          console.log(res.data)
           return res;
         })
         .catch((err)=>{
@@ -61,7 +58,6 @@ const actions = {
           commit("SET_LIST",res.data);
           commit("SET_LIST_LOADING", false);
         }
-        console.log(res.data)
         return res;
       })
       .catch((err)=>{
