@@ -1,6 +1,7 @@
-# Survey Full Stack Application
+# JPM WEB APPLICATION
 
-Built with these technologies for [YouTube Video](https://youtu.be/WLQDpY7lOLg)
+Built with these technologies
+
 <table>
     <tr>
         <td>
@@ -16,19 +17,16 @@ Built with these technologies for [YouTube Video](https://youtu.be/WLQDpY7lOLg)
             <img src="https://i.imgur.com/Kp5kTUp.png" />
         </td>
     </tr>
-</table> 
-
+</table>
 
 ## Requirements
-You need to have PHP version **8.0** or above. Node.js version **12.0** or above.
 
-## Demo
-https://yoursurveys.xyz
-
+You need to have PHP version **7.4** or above. Node.js version **12.0** or above.
 
 ## Installation
 
 #### Backend
+
 1. Clone the project
 2. Go to the project root directory
 3. Run `composer install`
@@ -37,14 +35,13 @@ https://yoursurveys.xyz
 6. Run `php artisan serve` to start the project at http://localhost:8000
 
 #### Frontend
+
 1. Navigate to `vue` folder using terminal
 2. Run `npm install` to install vue.js project dependencies
 3. Copy `vue/.env.example` into `vue/.env` and specify API URL
 4. Start frontend by running `npm run dev`
 5. Open http://localhost:3000
 
-
 ## License
 
 The project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-
