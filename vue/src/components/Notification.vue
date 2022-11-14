@@ -1,10 +1,21 @@
 <template>
   <div
     v-if="notification.show"
-    class="fixed w-[300px] left-4 bottom-4 py-2 px-4 text-white animate-fade-in-down"
+    @click="notification.show = false"
+    class="fixed w-[360px] right-4 top-4 py-4 px-6 text-white animate-fade-in-down text-[20px] rounded shadow-lg z-50"
     :class="[notification.type === 'success' ? 'bg-emerald-500' : 'bg-red-500']"
   >
-    {{ notification.message }}
+    <p class="drop-shadow flex items-top gap-2">
+      <mdicon
+        :name="
+          notification.type === 'success'
+            ? 'check-circle-outline'
+            : 'close-circle-outline'
+        "
+        size="30"
+        class="mt-1"
+      />{{ notification.message }}
+    </p>
   </div>
 </template>
 

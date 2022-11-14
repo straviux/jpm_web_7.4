@@ -1,12 +1,6 @@
 <?php
-/**
- * User: Zura
- * Date: 12/19/2021
- * Time: 3:49 PM
- */
 
 namespace App\Http\Controllers;
-
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -14,32 +8,26 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Testing\Fluent\Concerns\Has;
 use Illuminate\Validation\Rules\Password;
 
-/**
- * Class AuthController
- *
- * @author  Zura Sekhniashvili <zurasekhniashvili@gmail.com>
- * @package App\Http\Controllers
- */
 class AuthController extends Controller
 {
+
+
     public function register(Request $request)
     {
         $data = $request->validate([
             'name' => 'required|string',
+            'username' => 'required|string',
             'email' => 'required|email|string|unique:users,email',
-            'password' => [
-                'required',
-                'confirmed',
-                Password::min(8)->mixedCase()->numbers()->symbols()
-            ]
+            'password' => ['required', 'confirmed', Password::min(8)]
         ]);
 
-        /** @var \App\Models\User $user */
         $user = User::create([
             'name' => $data['name'],
+            'username' => $data['username'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password'])
+            'password' => bcrypt($data['password']),
         ]);
+
         $token = $user->createToken('main')->plainTextToken;
 
         return response([
@@ -51,12 +39,13 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'email' => 'required|email|string|exists:users,email',
+            'username' => 'required|string',
             'password' => [
-                'required',
+                'required'
             ],
             'remember' => 'boolean'
         ]);
+
         $remember = $credentials['remember'] ?? false;
         unset($credentials['remember']);
 
@@ -65,6 +54,7 @@ class AuthController extends Controller
                 'error' => 'The Provided credentials are not correct'
             ], 422);
         }
+
         $user = Auth::user();
         $token = $user->createToken('main')->plainTextToken;
 
@@ -78,12 +68,12 @@ class AuthController extends Controller
     {
         /** @var User $user */
         $user = Auth::user();
-        // Revoke the token that was used to authenticate the current request...
+
+        // Revoke the token that was used to authenticate the current request
         $user->currentAccessToken()->delete();
 
         return response([
             'success' => true
         ]);
     }
-
 }

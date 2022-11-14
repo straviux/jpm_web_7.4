@@ -7,5 +7,4 @@
   <router-view :key="$route.path"></router-view>
 </template>
 
-<style>
-</style>
+<style></style>

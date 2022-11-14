@@ -1,138 +1,127 @@
 <template>
-  <div>
-    <img
-      class="mx-auto h-12 w-auto"
-      src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-      alt="Workflow"
-    />
-    <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-      Sign in to your account
-    </h2>
-    <p class="mt-2 text-center text-sm text-gray-600">
-      Or
-      {{ " " }}
-      <router-link
-        :to="{ name: 'Register' }"
-        class="font-medium text-indigo-600 hover:text-indigo-500"
-      >
-        register for free
-      </router-link>
-    </p>
+  <div class="bg-no-repeat bg-cover bg-center relative" id="login-container">
+    <div
+      class="absolute bg-gradient-to-b from-cyan-400 to-blue-400 opacity-75 inset-0 z-0"
+    ></div>
+    <div class="min-h-screen flex mx-0 justify-center">
+      <div class="flex justify-center items-center z-10">
+        <div class="p-12 bg-white mx-auto rounded-2xl w-100">
+          <div class="mb-4">
+            <h3 class="font-semibold text-2xl text-gray-800">Sign In</h3>
+            <p class="text-gray-500 mt-1">Please sign in to your account.</p>
+          </div>
+          <!-- BEGIN LOGIN FORM -->
+          <form class="space-y-5 mt-4" @submit="login">
+            <div
+              v-if="errorMessage"
+              class="p-4 mb-4 text-sm text-yellow-700 bg-yellow-100 rounded-lg dark:bg-yellow-200 dark:text-yellow-800 flex items-center justify-between"
+              role="alert"
+            >
+              {{ errorMessage }}
+              <span
+                @click="errorMessage = ''"
+                class="border border-red-600 ml-2 rounded-full transition-colors cursor-pointer hover:text-red-800 hover:border-red-800"
+              >
+                <mdicon name="close" size="17"
+              /></span>
+            </div>
+            <div class="space-y-2">
+              <label class="text-sm font-medium text-gray-700 tracking-wide"
+                >Username</label
+              >
+              <input
+                class="w-full text-base px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
+                type="text"
+                required
+                v-model="user.username"
+                placeholder="Enter your username"
+              />
+            </div>
+            <div class="space-y-2">
+              <label
+                class="mb-5 text-sm font-medium text-gray-700 tracking-wide"
+              >
+                Password
+              </label>
+              <input
+                class="w-full content-center text-base px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
+                type="password"
+                v-model="user.password"
+                required
+                placeholder="Enter your password"
+              />
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <input
+                  id="remember_me"
+                  name="remember_me"
+                  type="checkbox"
+                  v-model="user.remember"
+                  class="h-4 w-4 bg-blue-500 focus:ring-blue-400 border-gray-300 rounded"
+                />
+                <label
+                  for="remember_me"
+                  class="ml-2 block text-sm text-gray-800"
+                >
+                  Remember me
+                </label>
+              </div>
+              <!-- <div class="text-sm">
+                <a href="#" class="text-green-400 hover:text-green-500">
+                  Forgot your password?
+                </a>
+              </div> -->
+            </div>
+            <div>
+              <button
+                type="submit"
+                class="w-full flex justify-center bg-green-400 hover:bg-green-500 text-gray-100 p-3 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500"
+              >
+                Sign in
+              </button>
+            </div>
+          </form>
+          <div class="pt-5 text-center text-gray-400 text-xs">
+            <span> Copyright © 2022-2023</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <form class="mt-8 space-y-6" @submit="login">
-    <Alert v-if="errorMsg">
-      {{ errorMsg }}
-      <span
-        @click="errorMsg = ''"
-        class="w-8 h-8 flex items-center justify-center rounded-full transition-colors cursor-pointer hover:bg-[rgba(0,0,0,0.2)]"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M6 18L18 6M6 6l12 12"
-          />
-        </svg>
-      </span>
-    </Alert>
-    <input type="hidden" name="remember" value="true" />
-    <div class="rounded-md shadow-sm -space-y-px">
-      <div>
-        <label for="email-address" class="sr-only">Email address</label>
-        <input
-          id="email-address"
-          name="email"
-          type="email"
-          autocomplete="email"
-          required=""
-          v-model="user.email"
-          class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-          placeholder="Email address"
-        />
-      </div>
-      <div>
-        <label for="password" class="sr-only">Password</label>
-        <input
-          id="password"
-          name="password"
-          type="password"
-          autocomplete="current-password"
-          required=""
-          v-model="user.password"
-          class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-          placeholder="Password"
-        />
-      </div>
-    </div>
-
-    <div class="flex items-center justify-between">
-      <div class="flex items-center">
-        <input
-          id="remember-me"
-          name="remember-me"
-          type="checkbox"
-          v-model="user.remember"
-          class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-        />
-        <label for="remember-me" class="ml-2 block text-sm text-gray-900">
-          Remember me
-        </label>
-      </div>
-    </div>
-
-    <div>
-      <TButtonLoading :loading="loading" class="w-full relative justify-center">
-        <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-          <LockClosedIcon
-            class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-            aria-hidden="true"
-          />
-        </span>
-        Sign in
-      </TButtonLoading>
-    </div>
-  </form>
 </template>
 
 <script setup>
-import { LockClosedIcon } from "@heroicons/vue/solid";
 import store from "../store";
 import { useRouter } from "vue-router";
 import { ref } from "vue";
-import Alert from "../components/Alert.vue";
-import TButtonLoading from "../components/core/TButtonLoading.vue";
 
 const router = useRouter();
-
 const user = {
-  email: "",
+  username: "",
   password: "",
+  remember: false,
 };
-let loading = ref(false);
-let errorMsg = ref("");
 
-function login(ev) {
+let errorMessage = ref("");
+
+const login = (ev) => {
   ev.preventDefault();
-
-  loading.value = true;
+  if (!user.username || !user.password) {
+    return;
+  }
   store
     .dispatch("login", user)
     .then(() => {
-      loading.value = false;
-      router.push({
-        name: "Dashboard",
-      });
+      router.push({ name: "Dashboard" });
     })
     .catch((err) => {
-      loading.value = false;
-      errorMsg.value = err.response.data.error;
+      errorMessage.value = err.response.data.error;
     });
-}
+};
 </script>
+<style lang="scss" scoped>
+#login-container {
+  background-image: url("../assets/img/login_bg.jpg");
+}
+</style>

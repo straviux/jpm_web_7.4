@@ -1,115 +1,133 @@
 <template>
-  <div>
-    <div>
-      <img
-        class="mx-auto h-12 w-auto"
-        src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-        alt="Workflow"
-      />
-      <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-        Register for free
-      </h2>
-      <p class="mt-2 text-center text-sm text-gray-600">
-        Or
-        {{ " " }}
-        <router-link
-          :to="{ name: 'Login' }"
-          class="font-medium text-indigo-600 hover:text-indigo-500"
-        >
-          login to your account
-        </router-link>
-      </p>
-    </div>
-    <form class="mt-8 space-y-6" @submit="register">
-      <Alert
-        v-if="Object.keys(errors).length"
-        class="flex-col items-stretch text-sm"
-      >
-        <div v-for="(field, i) of Object.keys(errors)" :key="i">
-          <div v-for="(error, ind) of errors[field] || []" :key="ind">
-            * {{ error }}
+  <div id="login-container" class="bg-no-repeat bg-cover bg-center relative">
+    <div
+      class="absolute bg-gradient-to-b from-cyan-400 to-blue-400 opacity-75 inset-0 z-0"
+    ></div>
+    <div class="min-h-screen flex mx-0 justify-center">
+      <div class="flex justify-center items-center z-10">
+        <div class="p-12 bg-white mx-auto rounded-2xl w-100">
+          <div class="mb-4">
+            <a
+              href="#"
+              @click="$router.go(-1)"
+              class="float-right mt-2 underline cursor-pointer text-green-600"
+              >Go Back</a
+            >
+            <h3 class="font-semibold text-2xl text-gray-800">Sign Up</h3>
+            <p class="text-gray-500">Create your account.</p>
+          </div>
+          <form class="space-y-5" @submit="register">
+            <div class="space-y-2">
+              <label class="text-sm font-medium text-gray-700 tracking-wide"
+                >Fullname</label
+              >
+              <input
+                class="w-full text-base px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
+                type="text"
+                v-model="user.name"
+                placeholder="Enter your name"
+              />
+            </div>
+            <div class="space-y-2">
+              <label class="text-sm font-medium text-gray-700 tracking-wide"
+                >Username</label
+              >
+              <input
+                class="w-full text-base px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
+                type="text"
+                v-model="user.username"
+                placeholder="Enter your username"
+              />
+            </div>
+            <div class="space-y-2">
+              <label class="text-sm font-medium text-gray-700 tracking-wide"
+                >Email Address</label
+              >
+              <input
+                class="w-full text-base px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
+                type="email"
+                v-model="user.email"
+                placeholder="Enter your email"
+              />
+            </div>
+            <div class="space-y-2">
+              <label
+                class="mb-5 text-sm font-medium text-gray-700 tracking-wide"
+              >
+                Password
+              </label>
+              <input
+                class="w-full content-center text-base px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
+                type="password"
+                v-model="user.password"
+                placeholder="Enter your password"
+              />
+            </div>
+            <div class="space-y-2">
+              <label
+                class="mb-5 text-sm font-medium text-gray-700 tracking-wide"
+              >
+                Confirm Password
+              </label>
+              <input
+                class="w-full content-center text-base px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
+                type="password"
+                v-model="user.password_confirmation"
+                placeholder="Confirm your password"
+              />
+            </div>
+
+            <div>
+              <button
+                type="submit"
+                class="w-full flex justify-center bg-green-400 hover:bg-green-500 text-gray-100 p-3 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+          <div class="flex items-center justify-between pt-5">
+            <div class="text-sm">
+              Existing user?
+
+              <router-link
+                :to="'login'"
+                class="text-green-400 hover:text-green-500"
+                >Sign in</router-link
+              >
+            </div>
+          </div>
+          <div class="pt-5 text-center text-gray-400 text-xs">
+            <span> Copyright © 2022-2023</span>
           </div>
         </div>
-      </Alert>
-
-      <input type="hidden" name="remember" value="true" />
-      <div class="rounded-md shadow-sm -space-y-px">
-        <TInput
-          name="name"
-          v-model="user.name"
-          :errors="errors"
-          placeholder="Full Name"
-          inputClass="rounded-t-md"
-        />
-        <TInput
-          type="email"
-          name="email"
-          v-model="user.email"
-          :errors="errors"
-          placeholder="Email Address"
-        />
-        <TInput
-          type="password"
-          name="password"
-          v-model="user.password"
-          :errors="errors"
-          placeholder="Password"
-        />
-        <TInput
-          type="password"
-          name="password_confirmation"
-          v-model="user.password_confirmation"
-          :errors="errors"
-          placeholder="Confirm Password"
-          inputClass="rounded-b-md"
-        />
       </div>
-      <div>
-        <TButtonLoading
-          :loading="loading"
-          class="w-full relative justify-center"
-        >
-          Sign up
-        </TButtonLoading>
-      </div>
-    </form>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { LockClosedIcon } from "@heroicons/vue/solid";
 import store from "../store";
 import { useRouter } from "vue-router";
-import TButtonLoading from "../components/core/TButtonLoading.vue";
-import TInput from "../components/core/TInput.vue";
-import Alert from "../components/Alert.vue";
-
 const router = useRouter();
 const user = {
   name: "",
+  username: "",
   email: "",
   password: "",
+  password_confirmation: "",
 };
-const loading = ref(false);
-const errors = ref({});
 
-function register(ev) {
+const register = (ev) => {
   ev.preventDefault();
-  loading.value = true;
-  store
-    .dispatch("register", user)
-    .then(() => {
-      loading.value = false;
-      router.push({
-        name: "Dashboard",
-      });
-    })
-    .catch((error) => {
-      loading.value = false;
-      if (error.response.status === 422) {
-        errors.value = error.response.data.errors;
-      }
-    });
-}
+  store.dispatch("register", user).then(() => {
+    router.push({ name: "Dashboard" });
+  });
+};
 </script>
+
+<style lang="scss" scoped>
+#login-container {
+  background-image: url("../assets/img/login_bg.jpg");
+}
+</style>
