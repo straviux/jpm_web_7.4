@@ -34,10 +34,17 @@ app.config.globalProperties.$filters = {
   numericOnly :(evt) => {
   const keysAllowed = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
   const keyPressed = evt.key;
-  if (!keysAllowed.includes(keyPressed)) {
-    evt.preventDefault();
+    if (!keysAllowed.includes(keyPressed)) {
+      evt.preventDefault();
+    }
+  },
+  truncate:(text, length, clamp)=>{
+      clamp = clamp || '...';
+      var node = document.createElement('div');
+      node.innerHTML = text;
+      var content = node.textContent;
+      return content.length > length ? content.slice(0, length) + clamp : content;
   }
-}
 
 }
 

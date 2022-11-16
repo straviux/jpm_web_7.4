@@ -50,9 +50,6 @@
 <script setup>
 import store from "../../store";
 import { computed, ref } from "vue";
-import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
-import CustomList from "../CustomList.vue";
-// const featuredList = computed(() => store.state.gallery.featured);
 const gallery = computed(() => store.state.gallery.list);
 
 const pageCount = ref(6);

@@ -36,7 +36,7 @@ const routes = {
       },
 
 
-      // newsRoutes
+
       {
         path: "stories",
         redirect: {name:"PublicStory"}, //imported from from story-routes
@@ -54,12 +54,13 @@ const routes = {
         children: eventsRoutes
       },
 
-      {
+     {
         path: "gallery",
+        redirect: {name:"PublicGallery"}, //imported from from story-routes
         component: Gallery,
-        name: "PublicGallery",
+        name: "GalleryModule",
         meta: {title:'Gallery'},
-        children: galleryRoutes
+        children:galleryRoutes
       },
 
 

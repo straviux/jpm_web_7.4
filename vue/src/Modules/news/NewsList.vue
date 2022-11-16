@@ -4,7 +4,7 @@
     id="bg-banner"
   >
     <div
-      class="absolute bg-gradient-to-b from-cyan-200 to-blue-200 opacity-75 inset-0 z-0"
+      class="absolute bg-gradient-to-b from-emerald-200 to-blue-200 opacity-75 inset-0 z-0"
     ></div>
     <div class="w-full z-10">
       <h5
@@ -21,6 +21,7 @@
     <div class="mx-auto max-w-7xl py-4 sm:px-6 lg:px-8">
       <div class="flex flex-wrap gap-6 mb-12">
         <Carousel
+          v-if="!featuredList.loading"
           :autoplay="3000"
           :wrapAround="true"
           :itemsToShow="4.5"
@@ -39,7 +40,6 @@
               snapAlign: 'center',
             },
           }"
-          v-if="featuredList.data.length"
           :key="featuredList.data.length"
         >
           <slide v-for="(row, i) in featuredList.data" :key="row.id"
@@ -82,7 +82,7 @@
     <div class="mx-auto max-w-7xl py-4 sm:px-6 lg:px-8">
       <section class="px-4 py-3 w-full text-right">
         <h6 class="text-2xl text-gray-600 mb-4 text-left">Latest</h6>
-        <custom-list :rows="newslist.data">
+        <custom-list :rows="newslist.data" v-if="newslist.data.length">
           <template v-slot:list="data">
             <router-link
               :to="{

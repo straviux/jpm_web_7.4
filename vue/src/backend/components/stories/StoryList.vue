@@ -153,7 +153,7 @@ const headers = [
   },
 
   {
-    key: "posted_at",
+    key: "created_at",
     label: "date publish",
     sortDirection: "ascending",
     rowClass: "text-[14px] text-slate-600",

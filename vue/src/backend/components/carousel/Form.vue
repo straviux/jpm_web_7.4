@@ -108,6 +108,7 @@ let model = ref({
   status: false,
   slide_url: "",
   slide: "",
+  order: "",
 });
 let action = "created";
 const route = useRoute();

@@ -161,7 +161,7 @@
                       {{ $filters.moment(data.rowData.created_at, "ll") }}
                     </div>
                     <p class="text-gray-700 line-clamp-4">
-                      {{ data.rowData.excerpt }}
+                      {{ $filters.truncate(data.rowData.excerpt, 150) }}
                     </p>
                   </div>
                 </router-link>
@@ -195,15 +195,15 @@
                     />
                   </figure>
                   <div class="card-body">
-                    <h5 class="text-normal card-title -mt-5">
+                    <h5 class="text-normal card-title -mt-5 line-clamp-2">
                       {{ data.rowData.headline }}
                     </h5>
                     <div class="flex text-gray-500 font-semibold">
                       <mdicon name="calendar" size="18" class="mr-1" />
                       {{ $filters.moment(data.rowData.created_at, "ll") }}
                     </div>
-                    <p class="text-gray-700 line-clamp-4">
-                      {{ data.rowData.excerpt }}
+                    <p class="text-gray-700 line-clamp-2">
+                      {{ $filters.truncate(data.rowData.excerpt, 150) }}
                     </p>
                   </div>
                 </router-link>
