@@ -98,7 +98,7 @@
             >
               <figure>
                 <img
-                  class="object-cover h-36 w-36"
+                  class="object-fill h-36 w-36"
                   alt="Cover Photo"
                   :src="data.rowData.cover_photo_url"
                 />

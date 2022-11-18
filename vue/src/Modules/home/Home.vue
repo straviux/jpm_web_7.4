@@ -147,16 +147,16 @@
                 >
                   <figure>
                     <img
-                      class="object-cover h-40 md:h-52 w-40 md:w-52"
+                      class="object-fill h-40 w-40"
                       alt="Cover Photo"
                       :src="data.rowData.cover_photo_url"
                     />
                   </figure>
                   <div class="card-body">
-                    <h5 class="text-normal card-title -mt-5">
+                    <h5 class="text-[16px] card-title -mt-5 lg:text-xl">
                       {{ data.rowData.headline }}
                     </h5>
-                    <div class="flex text-gray-500 font-semibold">
+                    <div class="flex text-gray-500 font-semibold text-xs">
                       <mdicon name="calendar" size="18" class="mr-1" />
                       {{ $filters.moment(data.rowData.created_at, "ll") }}
                     </div>
@@ -189,16 +189,16 @@
                 >
                   <figure>
                     <img
-                      class="object-cover h-40 md:h-52 w-40 md:w-52"
+                      class="object-fill h-40 w-40"
                       alt="Cover Photo"
                       :src="data.rowData.cover_photo_url"
                     />
                   </figure>
                   <div class="card-body">
-                    <h5 class="text-normal card-title -mt-5 line-clamp-2">
+                    <h5 class="text-[16px] card-title -mt-5 lg:text-xl">
                       {{ data.rowData.headline }}
                     </h5>
-                    <div class="flex text-gray-500 font-semibold">
+                    <div class="flex text-gray-500 font-semibold text-xs">
                       <mdicon name="calendar" size="18" class="mr-1" />
                       {{ $filters.moment(data.rowData.created_at, "ll") }}
                     </div>

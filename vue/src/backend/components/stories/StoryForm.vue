@@ -168,6 +168,7 @@ import "@vueup/vue-quill/dist/vue-quill.snow.css";
 
 const route = useRoute();
 const quill = ref(null);
+
 let model = ref({
   headline: "",
   excerpt: "",
