@@ -33,12 +33,12 @@ const routes = [
         meta: {title:'Login'},
         component: Login,
       },
-      {
-        path: "/register",
-        name: "Register",
-        meta: {title:'Register'},
-        component: Register,
-      },
+      // {
+      //   path: "/register",
+      //   name: "Register",
+      //   meta: {title:'Register'},
+      //   component: Register,
+      // },
     ],
   },
 

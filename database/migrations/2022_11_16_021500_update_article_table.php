@@ -14,7 +14,6 @@ class UpdateArticleTable extends Migration
     public function up()
     {
         Schema::table('articles', function (Blueprint $table) {
-            $table->foreignIdFor(\App\Models\ArticleAuthor::class, 'author_id');
             $table->foreignIdFor(\App\Models\ArticleCategory::class, 'category_id');
         });
     }
@@ -27,7 +26,6 @@ class UpdateArticleTable extends Migration
     public function down()
     {
         Schema::table('articles', function (Blueprint $table) {
-            $table->dropColumn('author_id');
             $table->dropColumn('category_id');
         });
     }

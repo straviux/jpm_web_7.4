@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\ArticleCategory;
 use App\Models\ArticleView;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\URL;
@@ -30,6 +31,7 @@ class ArticleResource extends JsonResource
             'updated_at' => (new \DateTime($this->updated_at))->format('Y-m-d H:i:s'),
             'posted_at' => (new \DateTime($this->posted_at))->format('Y-m-d H:i:s'),
             'views' => ArticleView::where('article_id', $this->id)->select('view_count')->first(),
+            'category' => ArticleCategory::where('id', $this->category_id)->select(['category', 'id'])->first(),
             'tags' => []
         ];
     }

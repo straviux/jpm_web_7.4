@@ -292,13 +292,13 @@
       >© 2022 <a href="#" class="hover:underline">JPM Palawan</a>. All Rights
       Reserved.
     </span>
-    <span class="absolute block right-6">
+    <!-- <span class="absolute block right-6">
       <router-link
         :to="'login'"
         class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-100"
         ><mdicon name="login-variant"
       /></router-link>
-    </span>
+    </span> -->
   </footer>
 </template>
 
@@ -330,7 +330,7 @@ const assistance = [
   {
     name: "Scholarship",
     description: "Get an opportunity to be part of our scholarship programs.",
-    href: "#",
+    href: "/scholarship",
     icon: CursorArrowRaysIcon,
   },
   {

@@ -107,7 +107,7 @@
                   <h2 class="card-title text-normal line-clamp-2">
                     {{ row.headline }}
                   </h2>
-                  <p class="line-clamp-3">
+                  <p class="line-clamp-2">
                     {{ row.excerpt }}
                   </p>
                 </div>
@@ -156,9 +156,15 @@
                     <h5 class="text-[16px] card-title -mt-5 lg:text-xl">
                       {{ data.rowData.headline }}
                     </h5>
-                    <div class="flex text-gray-500 font-semibold text-xs">
+                    <div
+                      class="flex text-gray-500 font-semibold text-xs space-x-2"
+                    >
                       <mdicon name="calendar" size="18" class="mr-1" />
                       {{ $filters.moment(data.rowData.created_at, "ll") }}
+
+                      <span class="text-blue-400 border-b-2 border-blue-400">{{
+                        data.rowData.category.category
+                      }}</span>
                     </div>
                     <p class="text-gray-700 line-clamp-4">
                       {{ $filters.truncate(data.rowData.excerpt, 150) }}
@@ -198,7 +204,9 @@
                     <h5 class="text-[16px] card-title -mt-5 lg:text-xl">
                       {{ data.rowData.headline }}
                     </h5>
-                    <div class="flex text-gray-500 font-semibold text-xs">
+                    <div
+                      class="flex text-gray-500 font-semibold text-xs space-x-2"
+                    >
                       <mdicon name="calendar" size="18" class="mr-1" />
                       {{ $filters.moment(data.rowData.created_at, "ll") }}
                     </div>

@@ -12,7 +12,7 @@ class Article extends Model
     use HasFactory, HasSlug;
 
     protected $fillable = [
-        'user_id', 'slug', 'headline', 'cover_photo', 'excerpt', 'content', 'status', 'featured', 'posted_at', 'article_type_id'
+        'user_id', 'slug', 'headline', 'cover_photo', 'excerpt', 'content', 'status', 'featured', 'posted_at', 'article_type_id', 'category_id'
     ];
 
     public function getSlugOptions(): SlugOptions

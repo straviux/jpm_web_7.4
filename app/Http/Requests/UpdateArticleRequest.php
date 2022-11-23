@@ -41,6 +41,7 @@ class UpdateArticleRequest extends FormRequest
             'excerpt' => 'required|string|max:1000',
             // 'slug' => 'required|string|max:1000',
             'article_type_id' => 'exists:article_types,id',
+            'category_id' => 'exists:article_categories,id',
             'content' => 'required|string',
             'posted_at' => 'nullable|date',
         ];

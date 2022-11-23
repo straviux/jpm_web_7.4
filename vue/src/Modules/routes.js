@@ -1,5 +1,6 @@
 // const Module = () => import("./Module.vue");
 const DefaultLayout = () => import("./DefaultLayout.vue");
+import Scholarship from "./Scholarship.vue";
 import Home from "./home/Home.vue";
 import News from "./news/News.vue";
 import Stories from "./stories/Story.vue";
@@ -23,6 +24,13 @@ const routes = {
           component: Home,
           name: "Home",
           meta: {title:'Home'},
+      },
+
+      {
+          path: "scholarship",
+          component: Scholarship,
+          name: "Scholarship",
+          meta: {title:'Scholarship'},
       },
 
       // newsRoutes

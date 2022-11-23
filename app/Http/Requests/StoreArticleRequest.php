@@ -39,6 +39,7 @@ class StoreArticleRequest extends FormRequest
             'featured' => 'required|boolean',
             'excerpt' => 'required|string|max:1000',
             'article_type_id' => 'exists:article_types,id',
+            'category_id' => 'exists:article_categories,id',
             // 'slug' => 'required|string|max:1000',
             'content' => 'required|string',
             'posted_at' => 'nullable|date',
