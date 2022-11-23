@@ -1,5 +1,6 @@
 <template>
-  <div class="mt-5 md:col-span-2 md:mt-0 max-w-7xl mx-auto">
+  <Loader v-if="store.state.articles.current.loading" :isFullScreen="true" />
+  <div class="mt-5 md:col-span-2 md:mt-0 max-w-4xl mx-auto">
     <form
       @submit.prevent="saveNews"
       class="animate-fade-in-down animation"
@@ -18,6 +19,24 @@
             >
           </div>
           <!-- <pre>{{ model }}</pre> -->
+          <div class="form-control w-full max-w-xs">
+            <label class="label block font-medium text-gray-700">
+              Category
+            </label>
+            <select class="select select-bordered" v-model="model.category_id">
+              <option value="1">Business</option>
+              <option value="2">Sports</option>
+              <option value="3">Education</option>
+              <option value="4">Energy</option>
+              <option value="5">General</option>
+              <option value="6">Weather</option>
+              <option value="7">Lifestyle</option>
+              <option value="8">Legal</option>
+              <option value="9">Health</option>
+              <option value="10">Social Welfare</option>
+              <option value="11">Politics and Governance</option>
+            </select>
+          </div>
           <div>
             <label class="block font-medium text-gray-700">Cover photo</label>
             <div
@@ -142,7 +161,7 @@
               </label>
             </div>
           </div>
-          <div class="px-4 py-3 text-right sm:px-6">
+          <div class="px-4 py-3 text-center sm:px-6">
             <button
               type="submit"
               class="btn lg:btn-wide bg-blue-500 text-white gap-1 uppercase shadow mt-4 rounded-[4px] btn-success"
@@ -164,14 +183,15 @@ import store from "../../../store";
 import { useRoute, useRouter } from "vue-router";
 import { QuillEditor } from "@vueup/vue-quill";
 import "@vueup/vue-quill/dist/vue-quill.snow.css";
+import Loader from "../../Loader.vue";
 // import router from "../../../router";
 
 const route = useRoute();
-const router = useRouter();
 const quill = ref(null);
 let model = ref({
   headline: "",
   excerpt: "",
+  category_id: "",
   content: "",
   status: false,
   featured: false,
@@ -189,8 +209,10 @@ watch(
     model.value = {
       ...JSON.parse(JSON.stringify(newVal)),
     };
+    if (model.value.category) {
+      model.value.category_id = model.value.category.id;
+    }
     quill.value.setHTML(newVal.content);
-    console.log(model.value);
   }
 );
 
