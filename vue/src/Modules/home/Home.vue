@@ -166,7 +166,7 @@
                         data.rowData.category.category
                       }}</span>
                     </div>
-                    <p class="text-gray-700 line-clamp-4">
+                    <p class="text-gray-700 hidden md:block">
                       {{ $filters.truncate(data.rowData.excerpt, 150) }}
                     </p>
                   </div>
@@ -209,8 +209,12 @@
                     >
                       <mdicon name="calendar" size="18" class="mr-1" />
                       {{ $filters.moment(data.rowData.created_at, "ll") }}
+
+                      <span class="text-blue-400 border-b-2 border-blue-400">{{
+                        data.rowData.category.category
+                      }}</span>
                     </div>
-                    <p class="text-gray-700 line-clamp-2">
+                    <p class="text-gray-700 hidden md:block">
                       {{ $filters.truncate(data.rowData.excerpt, 150) }}
                     </p>
                   </div>

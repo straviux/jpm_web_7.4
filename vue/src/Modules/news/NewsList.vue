@@ -115,8 +115,8 @@
                     data.rowData.category.category
                   }}</span>
                 </div>
-                <p class="text-gray-700 line-clamp-4">
-                  {{ data.rowData.excerpt }}
+                <p class="text-gray-700 hidden md:block">
+                  {{ $filters.truncate(data.rowData.excerpt, 250) }}
                 </p>
               </div>
             </router-link>
