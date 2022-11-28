@@ -126,7 +126,7 @@ class ArticleController extends Controller
     {
         //
         $user = $request->user();
-        if ($user->id != $article->user_id) {
+        if (!$user->id) {
             return abort(403, 'Unauthorized action');
         }
         return new ArticleResource($article);
