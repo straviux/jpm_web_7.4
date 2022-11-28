@@ -24,17 +24,15 @@
               Category
             </label>
             <select class="select select-bordered" v-model="model.category_id">
-              <option value="1">Business</option>
-              <option value="2">Sports</option>
-              <option value="3">Education</option>
-              <option value="4">Energy</option>
-              <option value="5">General</option>
-              <option value="6">Weather</option>
-              <option value="7">Lifestyle</option>
-              <option value="8">Legal</option>
-              <option value="9">Health</option>
-              <option value="10">Social Welfare</option>
-              <option value="11">Politics and Governance</option>
+              <option value="1">health</option>
+              <option value="2">politics and governance</option>
+              <option value="3">energy</option>
+              <option value="4">weather</option>
+              <option value="5">legal</option>
+              <option value="6">sports</option>
+              <option value="7">business</option>
+              <option value="8">education</option>
+              <option value="9">social</option>
             </select>
           </div>
           <div>
@@ -201,7 +199,6 @@ let model = ref({
   article_type_id: 2, // 1-news  2-story  3-article
 });
 let action = "created";
-
 //watch current news from store
 watch(
   () => store.state.articles.current.data,

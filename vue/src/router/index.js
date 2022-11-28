@@ -41,14 +41,15 @@ const routes = [
       // },
     ],
   },
-
-
-  {path: '/:pathMatch(.*)*',redirect:'/404', component: NotFound},
   {
     path: '/404',
     name: 'NotFound',
     component: NotFound
-  }
+  },
+
+
+  {path: '/:pathMatch(.*)*', component: NotFound}
+
 ];
 
 const router = createRouter( {
