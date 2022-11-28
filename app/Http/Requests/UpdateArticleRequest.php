@@ -33,7 +33,7 @@ class UpdateArticleRequest extends FormRequest
     {
         return [
             'headline' => 'required|string|max:1000',
-            'user_id' => 'exists:users,id',
+            // 'user_id' => 'exists:users,id',
             'type' => 'exists:articletypes,id',
             'cover_photo' => 'nullable|string',
             'status' => 'required|boolean',
