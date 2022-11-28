@@ -33,6 +33,7 @@
               <option value="7">business</option>
               <option value="8">education</option>
               <option value="9">social</option>
+              <option value="9">travel advisory</option>
             </select>
           </div>
           <div>

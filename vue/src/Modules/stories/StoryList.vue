@@ -98,21 +98,26 @@
             >
               <figure>
                 <img
-                  class="object-fill h-36 w-36"
+                  class="object-fill h-24 w-24 md:h-40 md:w-40"
                   alt="Cover Photo"
                   :src="data.rowData.cover_photo_url"
                 />
               </figure>
               <div class="card-body">
-                <h5 class="text-normal card-title -mt-5">
+                <h5 class="text-[16px] card-title -mt-5 lg:text-xl">
                   {{ data.rowData.headline }}
                 </h5>
-                <div class="flex text-gray-500 font-semibold">
-                  <mdicon name="calendar" size="18" class="mr-1" />
+                <div class="flex text-gray-500 font-semibold text-xs space-x-2">
+                  <mdicon name="calendar" size="14" class="mr-1" />
                   {{ $filters.moment(data.rowData.created_at, "ll") }}
+
+                  <span
+                    class="text-blue-600 border-b-2 border-blue-500 capitalize"
+                    >{{ data.rowData.category.category }}</span
+                  >
                 </div>
                 <p class="text-gray-700 hidden md:block">
-                  {{ $filters.truncate(data.rowData.excerpt, 250) }}
+                  {{ $filters.truncate(data.rowData.excerpt, 150) }}
                 </p>
               </div>
             </router-link>

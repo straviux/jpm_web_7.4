@@ -147,7 +147,7 @@
                 >
                   <figure>
                     <img
-                      class="object-fill h-40 w-40"
+                      class="object-fill h-24 w-24 md:h-40 md:w-40"
                       alt="Cover Photo"
                       :src="data.rowData.cover_photo_url"
                     />
@@ -159,12 +159,13 @@
                     <div
                       class="flex text-gray-500 font-semibold text-xs space-x-2"
                     >
-                      <mdicon name="calendar" size="18" class="mr-1" />
+                      <mdicon name="calendar" size="14" class="mr-1" />
                       {{ $filters.moment(data.rowData.created_at, "ll") }}
 
-                      <span class="text-blue-400 border-b-2 border-blue-400">{{
-                        data.rowData.category.category
-                      }}</span>
+                      <span
+                        class="text-blue-600 border-b-2 border-blue-500 capitalize"
+                        >{{ data.rowData.category.category }}</span
+                      >
                     </div>
                     <p class="text-gray-700 hidden md:block">
                       {{ $filters.truncate(data.rowData.excerpt, 150) }}
@@ -195,7 +196,7 @@
                 >
                   <figure>
                     <img
-                      class="object-fill h-40 w-40"
+                      class="object-fill h-24 w-24 md:h-40 md:w-40"
                       alt="Cover Photo"
                       :src="data.rowData.cover_photo_url"
                     />
@@ -207,12 +208,13 @@
                     <div
                       class="flex text-gray-500 font-semibold text-xs space-x-2"
                     >
-                      <mdicon name="calendar" size="18" class="mr-1" />
+                      <mdicon name="calendar" size="14" class="mr-1" />
                       {{ $filters.moment(data.rowData.created_at, "ll") }}
 
-                      <span class="text-blue-400 border-b-2 border-blue-400">{{
-                        data.rowData.category.category
-                      }}</span>
+                      <span
+                        class="text-blue-600 border-b-2 border-blue-500 capitalize"
+                        >{{ data.rowData.category.category }}</span
+                      >
                     </div>
                     <p class="text-gray-700 hidden md:block">
                       {{ $filters.truncate(data.rowData.excerpt, 150) }}
