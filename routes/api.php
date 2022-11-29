@@ -28,16 +28,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('/gallery', App\Http\Controllers\GalleryImageController::class);
 });
 
-// Route::get('/news-by-slug/{article:slug}', [App\Http\Controllers\ArticleController::class, 'showForPublic']);
 Route::get('/article-by-slug/{article:slug}', [App\Http\Controllers\ArticleController::class, 'showForPublic']);
 Route::get('/articles-public/', [App\Http\Controllers\ArticleController::class, 'showPublicList']);
-// Route::get('/news-list/', [App\Http\Controllers\ArticleController::class, 'showPublicList']);
-// Route::get('/featured-list/', [App\Http\Controllers\ArticleController::class, 'showFeaturedList']);
 Route::get('/latest-list/', [App\Http\Controllers\ArticleController::class, 'showPublicList']);
 Route::get('/carousel-list/', [App\Http\Controllers\CarouselController::class, 'showPublic']);
 Route::get('/gallery-list/', [App\Http\Controllers\GalleryImageController::class, 'showPublic']);
 
-// Route::get('/story-by-slug/{article:slug}', [App\Http\Controllers\ArticleController::class, 'showForPublic']);
 Route::get('/story-list/', [App\Http\Controllers\ArticleController::class, 'showPublicList']);
 Route::get('/featured-story-list/', [App\Http\Controllers\ArticleController::class, 'showFeaturedList']);
 
