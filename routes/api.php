@@ -46,6 +46,7 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
 
-Route::get('/test', function () {
-    return view('welcome');
+
+Route::get('/greeting', function () {
+    return 'Hello World';
 });
