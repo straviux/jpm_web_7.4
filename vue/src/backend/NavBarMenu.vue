@@ -56,25 +56,20 @@ const maintenance = [
     to: { name: "CarouselMaintenance" },
   },
   {
-    text: "News",
+    text: "Articles",
     icon: "newspaper-variant-outline",
-    to: { name: "NewsMaintenance" },
+    to: { name: "Article Maintenance" },
   },
-  {
-    text: "Story",
-    icon: "comment-quote-outline",
-    to: { name: "StoryMaintenance" },
-  },
-  {
-    text: "Resolution",
-    icon: "book-open-outline",
-    to: { name: "ResolutionMaintenance" },
-  },
-  {
-    text: "Events",
-    icon: "star-outline",
-    to: { name: "EventsMaintenance" },
-  },
+  // {
+  //   text: "Resolution",
+  //   icon: "book-open-outline",
+  //   to: { name: "ResolutionMaintenance" },
+  // },
+  // {
+  //   text: "Events",
+  //   icon: "star-outline",
+  //   to: { name: "EventsMaintenance" },
+  // },
   {
     text: "Gallery",
     icon: "view-gallery-outline",
