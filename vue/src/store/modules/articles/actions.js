@@ -30,6 +30,22 @@ const actions = {
         })
       },
 
+  getCategoryList({commit},{url=null}={}) {
+        commit("SET_CATEGORY_LOADING", true);
+        url =  '/article-categories'
+        return axiosClient
+        .get(url)
+        .then((res)=>{
+          commit("SET_CATEGORY_LIST",res.data);
+          commit("SET_CATEGORY_LOADING", false);
+          return res;
+        })
+        .catch((err)=>{
+          commit("SET_LIST_LOADING", false);
+          throw err;
+        })
+      },
+
   getSlug({commit}, slug) {
         commit("SET_CURRENT_LOADING", true);
         return axiosClient
@@ -67,17 +83,20 @@ const actions = {
   },
 
   saveArticle({commit},article){
+      commit("SET_CURRENT_LOADING", true);
         delete article.cover_photo_url;
         let response;
         if(article.id) {
           response = axiosClient.put(`/articles/${article.id}`, article)
           .then((res)=>{
             commit("SET_CURRENT", res.data);
+            commit("SET_CURRENT_LOADING", false);
             return res;
           })
         } else {
           response = axiosClient.post("/articles", article).then((res)=>{
             commit("SET_CURRENT", res.data);
+            commit("SET_CURRENT_LOADING", false);
             return res;
           })
         }

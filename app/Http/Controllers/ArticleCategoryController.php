@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ArticleCategoryResource;
 use App\Models\ArticleCategory;
 use Illuminate\Http\Request;
 
@@ -15,17 +16,9 @@ class ArticleCategoryController extends Controller
     public function index()
     {
         //
+        return ArticleCategoryResource::collection(ArticleCategory::orderBy('created_at', 'DESC')->paginate());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -44,21 +37,15 @@ class ArticleCategoryController extends Controller
      * @param  \App\Models\ArticleCategory  $articleCategory
      * @return \Illuminate\Http\Response
      */
-    public function show(ArticleCategory $articleCategory)
+    public function show(ArticleCategory $articleCategory, Request $request)
     {
-        //
+        $user = $request->user();
+        if (!$user->id) {
+            return abort(403, 'Unauthorized action');
+        }
+        return new ArticleCategoryResource($articleCategory);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\ArticleCategory  $articleCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ArticleCategory $articleCategory)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.

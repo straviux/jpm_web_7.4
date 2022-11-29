@@ -15,12 +15,20 @@ const mutations =  {
     SET_LIST_LOADING: (state, loading) => {
         state.list.loading = loading;
     },
-     SET_FEATURED: (state, article)=>{
+    SET_FEATURED: (state, article)=>{
       state.featured.data = article.data;
       state.featured.links = article.meta.links;
     },
-     SET_FEATURED_LOADING: (state, loading) => {
+    SET_FEATURED_LOADING: (state, loading) => {
         state.list.loading = loading;
+    },
+
+    SET_CATEGORY_LIST: (state, category) => {
+        state.category.data = category.data;
+        state.category.links = category.meta.links;
+    },
+    SET_CATEGORY_LOADING: (state, loading) => {
+        state.category.loading = loading;
     },
 
   }

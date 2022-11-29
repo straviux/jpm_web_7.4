@@ -18,7 +18,11 @@ export default {
           links: [],
           data: []
         },
-
+        category: {
+          loading:false,
+          links:[],
+          data:[]
+        }
 
       }
   },

@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::resource('/articles', App\Http\Controllers\ArticleController::class);
+    Route::resource('/article-categories', App\Http\Controllers\ArticleCategoryController::class);
     Route::resource('/carousels', App\Http\Controllers\CarouselController::class);
     Route::resource('/gallery', App\Http\Controllers\GalleryImageController::class);
 });
