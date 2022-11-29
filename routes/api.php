@@ -26,7 +26,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('/article-categories', App\Http\Controllers\ArticleCategoryController::class);
     Route::resource('/carousels', App\Http\Controllers\CarouselController::class);
     Route::resource('/gallery', App\Http\Controllers\GalleryImageController::class);
-    //test
 });
 
 // Route::get('/news-by-slug/{article:slug}', [App\Http\Controllers\ArticleController::class, 'showForPublic']);
@@ -44,7 +43,6 @@ Route::get('/featured-story-list/', [App\Http\Controllers\ArticleController::cla
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-
 
 
 Route::get('/greeting', function () {
