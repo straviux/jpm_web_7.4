@@ -19,6 +19,7 @@ class ArticleResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'user_id' => $this->user_id,
             'headline' => $this->headline,
             'slug' => $this->slug,
             'cover_photo_url' => $this->cover_photo ? URL::to($this->cover_photo) : null,

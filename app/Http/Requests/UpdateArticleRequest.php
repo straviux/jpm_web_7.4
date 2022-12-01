@@ -16,12 +16,12 @@ class UpdateArticleRequest extends FormRequest
         return true;
     }
 
-    // protected function prepareForValidation()
-    // {
-    //     $this->merge([
-    //         'user_id' => $this->user()->id
-    //     ]);
-    // }
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'user_id' => $this->user()->id
+        ]);
+    }
 
 
     /**
