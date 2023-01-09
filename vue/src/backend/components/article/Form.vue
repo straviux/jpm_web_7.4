@@ -1,26 +1,86 @@
 <template>
   <Loader v-if="store.state.articles.current.loading" :isFullScreen="true" />
-  <div class="mt-5 md:col-span-2 md:mt-0 max-w-4xl mx-auto">
+  <div class="mt-5 md:col-span-2 md:mt-0 max-w-7xl mx-auto">
     <form
       @submit.prevent="saveArticle"
       class="animate-fade-in-down animation"
       :style="{ animationDelay: '0.5s' }"
     >
-      <div class="shadow sm:overflow-hidden sm:rounded-md">
-        <div class="space-y-10 bg-white sm:p-6">
+      <div class="flex">
+        <div class="space-y-8 w-2/3 bg-white p-6 rounded-l-lg">
           <div class="flex justify-between">
-            <h1 class="text-xl uppercase mb-2">
+            <!-- <h1 class="text-xl uppercase mb-2">
               {{ model.id ? model.headline : "new article" }}
-            </h1>
+            </h1> -->
             <router-link
-              :to="{ name: 'ArticleList' }"
-              class="underline text-blue-800"
-              >Return</router-link
+              :to="{ name: 'ArticleTable' }"
+              class="btn btn-link underline text-red-500 -ml-4"
+              ><mdicon name="keyboard-return" size="18" /> Back</router-link
             >
+
+            <!-- <button
+              type="submit"
+              class="btn lg:btn-wide bg-blue-500 text-white gap-1 uppercase shadow mt-4 rounded-[4px] btn-success"
+            >
+
+            </button> -->
           </div>
-          <!-- <pre>{{ model }}</pre> -->
-          <div class="flex space-x-10">
-            <div class="form-control w-full max-w-xs">
+          <div class="grid grid-cols-3 gap-6">
+            <div class="col-span-12">
+              <label for="headline" class="block font-medium text-gray-700"
+                >Headline</label
+              >
+              <div class="mt-4 flex shadow-sm">
+                <input
+                  v-model="model.headline"
+                  type="text"
+                  name="headline"
+                  id="headline"
+                  class="input block w-full flex-1 rounded-sm border-gray-300 focus:border-transparent focus:ring-none sm:text-sm"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label for="excerpt" class="block font-medium text-gray-700"
+              >Excerpt</label
+            >
+            <div class="mt-2">
+              <textarea
+                v-model="model.excerpt"
+                id="excerpt"
+                name="excerpt"
+                rows="5"
+                class="input block w-full flex-1 h-36 rounded-sm p-2 border-gray-300 focus:border-transparent focus:ring-none sm:text-sm"
+                placeholder="Type something here"
+              />
+            </div>
+            <p class="mt-2 text-gray-500">
+              Brief information about this article. Will be displayed as
+              subheading
+            </p>
+          </div>
+
+          <div>
+            <label for="content" class="block font-medium text-gray-700"
+              >Content</label
+            >
+            <div class="mt-2">
+              <QuillEditor
+                v-model:content="model.content"
+                contentType="html"
+                theme="snow"
+                toolbar="full"
+                ref="quill"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="w-1/3 bg-slate-50 p-6 space-y-6 rounded-r-lg">
+          <div class="flex space-x-4">
+            <div class="form-control w-[150px]">
               <label class="label block font-medium text-gray-700">
                 Article
               </label>
@@ -32,7 +92,7 @@
                 <option value="2">Story</option>
               </select>
             </div>
-            <div class="form-control w-full max-w-xs">
+            <div class="form-control w-[150px]">
               <label class="label block font-medium text-gray-700">
                 Category
               </label>
@@ -53,7 +113,7 @@
           <div>
             <label class="block font-medium text-gray-700">Cover photo</label>
             <div
-              class="mt-2 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6"
+              class="mt-2 flex max-w-lg justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6"
             >
               <div class="space-y-1 text-center">
                 <svg
@@ -99,63 +159,13 @@
               </div>
             </div>
           </div>
-          <div class="grid grid-cols-3 gap-6">
-            <div class="col-span-12">
-              <label for="headline" class="block font-medium text-gray-700"
-                >Headline</label
-              >
-              <div class="mt-4 flex shadow-sm">
-                <input
-                  v-model="model.headline"
-                  type="text"
-                  name="headline"
-                  id="headline"
-                  class="input block w-full flex-1 rounded-sm border-gray-300 focus:border-transparent focus:ring-none sm:text-sm"
-                />
-              </div>
-            </div>
-          </div>
 
-          <div>
-            <label for="excerpt" class="block font-medium text-gray-700"
-              >Excerpt</label
-            >
-            <div class="mt-2">
-              <textarea
-                v-model="model.excerpt"
-                id="excerpt"
-                name="excerpt"
-                rows="3"
-                class="input block w-full flex-1 h-20 rounded-sm p-2 border-gray-300 focus:border-transparent focus:ring-none sm:text-sm"
-                placeholder="Type something here"
-              />
-            </div>
-            <p class="mt-2 text-gray-500">
-              Brief information about this article. Will be displayed as
-              subheading
-            </p>
-          </div>
-
-          <div>
-            <label for="content" class="block font-medium text-gray-700"
-              >Content</label
-            >
-            <div class="mt-2">
-              <QuillEditor
-                v-model:content="model.content"
-                contentType="html"
-                theme="snow"
-                toolbar="essential"
-                ref="quill"
-              />
-            </div>
-          </div>
           <div
             class="px-4 py-3 sm:px-6 flex items-center justify-center space-x-7"
           >
             <div class="form-control">
               <label class="label cursor-pointer space-x-2">
-                <span class="label-text text-lg">Active</span>
+                <span class="label-text text-lg">Published</span>
                 <input
                   type="checkbox"
                   class="checkbox checkbox-primary"
@@ -174,10 +184,15 @@
               </label>
             </div>
           </div>
-          <div class="px-4 py-3 text-center sm:px-6">
+          <div class="px-4 py-3 text-center sm:px-6 space-x-6">
+            <button
+              class="btn border border-purple-500 bg-transparent text-purple-500 hover:bg-purple-500 hover:text-white hover:border-purple-300 gap-1 shadow mt-4 rounded-[4px]"
+            >
+              <mdicon name="eye-circle" /> Preview
+            </button>
             <button
               type="submit"
-              class="btn lg:btn-wide bg-blue-500 text-white gap-1 uppercase shadow mt-4 rounded-[4px] btn-success"
+              class="btn bg-blue-500 text-white gap-1 shadow mt-4 rounded-[4px] btn-success"
             >
               <mdicon name="content-save" /> Save
             </button>
@@ -197,10 +212,10 @@ import { useRoute } from "vue-router";
 import { QuillEditor } from "@vueup/vue-quill";
 import "@vueup/vue-quill/dist/vue-quill.snow.css";
 import Loader from "../../Loader.vue";
-// import router from "../../../router";
 
 const route = useRoute();
 const quill = ref(null);
+
 const category = computed(() => store.state.articles.category.data);
 console.log(route);
 store.dispatch("articles/getCategoryList");

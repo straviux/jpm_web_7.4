@@ -60,11 +60,11 @@ const maintenance = [
     icon: "newspaper-variant-outline",
     to: { name: "Article Maintenance" },
   },
-  // {
-  //   text: "Resolution",
-  //   icon: "book-open-outline",
-  //   to: { name: "ResolutionMaintenance" },
-  // },
+  {
+    text: "House Bill",
+    icon: "book-open-outline",
+    to: { name: "HousebillMaintenance" },
+  },
   // {
   //   text: "Events",
   //   icon: "star-outline",

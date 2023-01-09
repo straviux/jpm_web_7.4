@@ -133,6 +133,7 @@
 import { ref, watch } from "vue";
 import store from "../../../store";
 import { useRoute } from "vue-router";
+import Loader from "../../Loader.vue";
 
 let model = ref({
   status: false,

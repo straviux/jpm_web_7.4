@@ -64,9 +64,9 @@
           </h5>
 
           <div class="rounded w-3/4 mt-8 border">
-            <div v-for="(pr, i) in pr_author" :key="i" class="flex flex-col">
+            <div v-for="(pr, i) in pa_list.data" :key="i" class="flex flex-col">
               <div class="px-6 py-2 bg-gray-200 w-full rounded-t font-bold">
-                {{ pr.hb }}
+                {{ pr.hb_no }}
               </div>
               <div class="px-6 py-2 w-full" v-html="pr.content"></div>
             </div>
@@ -76,9 +76,9 @@
           <h5 class="text-xl font-semibold text-gray-600">CO-AUTHORED BILLS</h5>
 
           <div class="rounded w-3/4 mt-8 border">
-            <div v-for="(co, i) in co_author" :key="i" class="flex flex-col">
+            <div v-for="(co, i) in ca_list.data" :key="i" class="flex flex-col">
               <div class="px-6 py-2 bg-gray-200 w-full rounded-t font-bold">
-                {{ co.hb }}
+                {{ co.hb_no }}
               </div>
               <div class="px-6 py-2 w-full" v-html="co.content"></div>
             </div>
@@ -108,9 +108,16 @@
   </div>
 </template>
 <script setup>
-import { ref } from "vue";
-
+import { ref, computed } from "vue";
+import store from "../store";
 const tab = ref(1);
+const pa_list = computed(() => store.state.housebills.pa_list);
+
+store.dispatch("housebills/getPrincipalAuthoredList");
+const ca_list = computed(() => store.state.housebills.ca_list);
+
+store.dispatch("housebills/getCoAuthoredList");
+
 const currentTab = (tabNumber) => (tab.value = tabNumber);
 const committees = [
   {

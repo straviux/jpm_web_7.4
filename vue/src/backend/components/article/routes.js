@@ -4,7 +4,7 @@ const Settings = () => import("./Settings.vue");
 const childRoutes =[ {
           path: "list",
           component: List,
-          name: "ArticleList",
+          name: "ArticleTable",
           meta: {title:"List"},
           redirect: {name:"type",params:{type:"news"}} ,
           children: [{

@@ -26,6 +26,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('/article-categories', App\Http\Controllers\ArticleCategoryController::class);
     Route::resource('/carousels', App\Http\Controllers\CarouselController::class);
     Route::resource('/gallery', App\Http\Controllers\GalleryImageController::class);
+    Route::resource('/housebills', App\Http\Controllers\AuthoredBillController::class);
 });
 
 Route::get('/article-by-slug/{article:slug}', [App\Http\Controllers\ArticleController::class, 'showForPublic']);
@@ -33,7 +34,7 @@ Route::get('/articles-public/', [App\Http\Controllers\ArticleController::class, 
 Route::get('/latest-list/', [App\Http\Controllers\ArticleController::class, 'showPublicList']);
 Route::get('/carousel-list/', [App\Http\Controllers\CarouselController::class, 'showPublic']);
 Route::get('/gallery-list/', [App\Http\Controllers\GalleryImageController::class, 'showPublic']);
-
+Route::get('/housebill-list/', [App\Http\Controllers\AuthoredBillController::class, 'showPublic']);
 Route::get('/story-list/', [App\Http\Controllers\ArticleController::class, 'showPublicList']);
 Route::get('/featured-story-list/', [App\Http\Controllers\ArticleController::class, 'showFeaturedList']);
 

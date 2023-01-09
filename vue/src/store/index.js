@@ -3,6 +3,7 @@ import axiosClient from "../axios"
 import articlesModule from "./modules/articles/index"
 import carouselModule from "./modules/carousel/index"
 import galleryModude from "./modules/gallery/index"
+import housebillsModude from "./modules/housebills/index"
 const store = createStore(
   {
     state: {
@@ -129,7 +130,8 @@ const store = createStore(
     modules: {
       articles:articlesModule,
       carousels:carouselModule,
-      gallery: galleryModude
+      gallery: galleryModude,
+      housebills: housebillsModude
     }
   }
 )

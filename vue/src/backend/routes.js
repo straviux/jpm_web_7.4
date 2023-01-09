@@ -1,15 +1,17 @@
 const Module = () => import("./Module.vue");
 const Dashboard = () => import("./components/Dashboard.vue");
 const ArticleMaintenance = () => import("./components/article/Module.vue")
-const NewsMaintenance = () => import("./components/NewsMaintenance.vue");
-const StoryMaintenance = () => import("./components/StoryMaintenance.vue");
+// const NewsMaintenance = () => import("./components/NewsMaintenance.vue");
+// const StoryMaintenance = () => import("./components/StoryMaintenance.vue");
 const CarouselMaintenance = () => import("./components/CarouselMaintenance.vue");
 const GalleryMaintenance = () => import("./components/GalleryMaintenance.vue")
+const HousebillMaintenance = () => import("./components/HousebillMaintenance.vue")
 import articleRoutes from "./components/article/routes";
-import newsRoutes from "./components/news/news-routes";
-import storyRoutes from "./components/stories/story-routes";
+// import newsRoutes from "./components/news/news-routes";
+// import storyRoutes from "./components/stories/story-routes";
 import carouselRoutes from "./components/carousel/routes.js";
 import galleryRoutes from "./components/gallery/routes";
+import housebillRoutes from "./components/housebill/routes";
 
 const routes = {
   path: "/admin",
@@ -31,10 +33,17 @@ const routes = {
     }
     ,{
       path: "articles",
-      redirect: {name:"ArticleList"}, //imported from from new-routes
+      redirect: {name:"ArticleTable"}, //imported from from new-routes
       component: ArticleMaintenance,
       name: "Article Maintenance",
       children:articleRoutes
+    }
+    ,{
+      path: "housebill-maintenance",
+      redirect: {name:"HousebillTable"}, //imported from from new-routes
+      component: HousebillMaintenance,
+      name: "HousebillMaintenance",
+      children:housebillRoutes
     }
     // ,{
     //   path: "news-maintenance",
