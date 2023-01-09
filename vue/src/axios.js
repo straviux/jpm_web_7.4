@@ -2,8 +2,8 @@ import axios from "axios"
 import store from "./store"
 
 const axiosClient = axios.create({
-  // baseURL: 'http://localhost:8000/api'
-  baseURL: 'http://apiv1.jpmpalawan.org/api'
+  baseURL: 'http://localhost:8000/api'
+  // baseURL: 'http://apiv1.jpmpalawan.org/api'
 })
 
 

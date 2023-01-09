@@ -2,7 +2,7 @@
   <Loader v-if="store.state.articles.current.loading" :isFullScreen="true" />
   <div class="mt-5 md:col-span-2 md:mt-0 max-w-4xl mx-auto">
     <form
-      @submit.prevent="saveNews"
+      @submit.prevent="saveArticle"
       class="animate-fade-in-down animation"
       :style="{ animationDelay: '0.5s' }"
     >
@@ -10,7 +10,7 @@
         <div class="space-y-10 bg-white sm:p-6">
           <div class="flex justify-between">
             <h1 class="text-xl uppercase mb-2">
-              {{ model.id ? model.headline : "Write a news article" }}
+              {{ model.id ? model.headline : "new article" }}
             </h1>
             <router-link
               :to="{ name: 'ArticleList' }"
@@ -19,22 +19,36 @@
             >
           </div>
           <!-- <pre>{{ model }}</pre> -->
-          <div class="form-control w-full max-w-xs">
-            <label class="label block font-medium text-gray-700">
-              Category
-            </label>
-            <select
-              class="select select-bordered capitalize"
-              v-model="model.category_id"
-            >
-              <option
-                v-for="(row, index) in category"
-                :key="index"
-                :value="row.id"
+          <div class="flex space-x-10">
+            <div class="form-control w-full max-w-xs">
+              <label class="label block font-medium text-gray-700">
+                Article
+              </label>
+              <select
+                class="select select-bordered capitalize"
+                v-model="model.article_type_id"
               >
-                {{ row.category }}
-              </option>
-            </select>
+                <option value="1">News</option>
+                <option value="2">Story</option>
+              </select>
+            </div>
+            <div class="form-control w-full max-w-xs">
+              <label class="label block font-medium text-gray-700">
+                Category
+              </label>
+              <select
+                class="select select-bordered capitalize"
+                v-model="model.category_id"
+              >
+                <option
+                  v-for="(row, index) in category"
+                  :key="index"
+                  :value="row.id"
+                >
+                  {{ row.category }}
+                </option>
+              </select>
+            </div>
           </div>
           <div>
             <label class="block font-medium text-gray-700">Cover photo</label>
@@ -117,8 +131,8 @@
               />
             </div>
             <p class="mt-2 text-gray-500">
-              Brief information about this news. Will be displayed as subheading
-              on news list.
+              Brief information about this article. Will be displayed as
+              subheading
             </p>
           </div>
 
@@ -188,6 +202,7 @@ import Loader from "../../Loader.vue";
 const route = useRoute();
 const quill = ref(null);
 const category = computed(() => store.state.articles.category.data);
+console.log(route);
 store.dispatch("articles/getCategoryList");
 let model = ref({
   headline: "",
@@ -199,7 +214,7 @@ let model = ref({
   slug: "",
   cover_photo: "",
   cover_photo_url: "",
-  article_type_id: 1, // 1-news  2-blog  3-article
+  article_type_id: "", // 1-news  2-story
 });
 let action = "created";
 
@@ -222,7 +237,7 @@ if (route.params.id) {
   action = "updated";
 }
 
-const saveNews = () => {
+const saveArticle = () => {
   store
     .dispatch("articles/saveArticle", model.value)
     .then(({ data }) => {

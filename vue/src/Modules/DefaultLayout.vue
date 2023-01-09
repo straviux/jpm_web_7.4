@@ -20,33 +20,54 @@
         </label>
         <ul
           tabindex="0"
-          class="menu dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+          class="menu dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-64 text-sm"
         >
-          <li>
-            <a class="justify-between">
-              JPM Assistance
-              <svg
-                class="fill-current"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"
-                />
-              </svg>
-            </a>
-            <ul class="p-2 bg-base-100 shadow">
-              <li><a>Financial Assistance</a></li>
-              <li><a>Scholarship</a></li>
-              <li><a>Livelihood</a></li>
-            </ul>
-          </li>
           <li>
             <a href="/"><mdicon name="home" class="text-gray-500" />Home</a>
           </li>
-          <li>
+          <li tabindex="0">
+            <span>
+              <mdicon name="charity" class="text-gray-500" />
+              Financial Assistance</span
+            >
+            <ul class="p-2 bg-base-100 shadow">
+              <li>
+                <a :href="'/financial-assistance/overview'">Overview</a>
+              </li>
+              <li><a>Resolutions</a></li>
+              <li>
+                <a :href="'/financial-assistance/requirement'">Requirements</a>
+              </li>
+            </ul>
+          </li>
+          <li tabindex="0">
+            <span>
+              <mdicon name="account-school" class="text-gray-500" />
+              Scholarship</span
+            >
+            <ul class="p-2 bg-base-100 shadow">
+              <li>
+                <a :href="'/scholarship-program/overview'">Overview</a>
+              </li>
+              <li><a>Resolutions</a></li>
+              <li>
+                <a :href="'/scholarship-program/requirement'">Requirements</a>
+              </li>
+            </ul>
+          </li>
+          <li tabindex="0">
+            <span>
+              <mdicon name="crowd" class="text-gray-500" />
+              Livelihood</span
+            >
+            <ul class="p-2 bg-base-100 shadow">
+              <li><a>Overview</a></li>
+              <li><a>Resolutions</a></li>
+              <li><a>Requirements</a></li>
+            </ul>
+          </li>
+
+          <li class="flex">
             <router-link :to="{ name: 'NewsModule' }"
               ><mdicon
                 name="newspaper-variant-outline"
@@ -54,7 +75,7 @@
               />News</router-link
             >
           </li>
-          <li>
+          <li class="flex">
             <router-link :to="{ name: 'StoryModule' }"
               ><mdicon
                 name="tooltip-text"
@@ -62,7 +83,7 @@
               />Stories</router-link
             >
           </li>
-          <li>
+          <li class="flex">
             <router-link :to="{ name: 'GalleryModule' }"
               ><mdicon
                 name="camera-iris"
@@ -70,7 +91,7 @@
               />Gallery</router-link
             >
           </li>
-          <li>
+          <li class="flex">
             <a
               ><mdicon
                 name="frequently-asked-questions"
@@ -78,56 +99,53 @@
               />FAQ</a
             >
           </li>
+
           <li tabindex="0">
-            <a class="justify-between">
-              More
-              <svg
-                class="fill-current"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"
-                />
-              </svg>
-            </a>
-            <ul class="p-2 bg-base-100 shadow">
-              <li><a>Government Agencies</a></li>
-              <li><a>About</a></li>
-              <li><a>Contact</a></li>
-            </ul>
+            <router-link :to="{ name: 'GovernmentAgencies' }">
+              <mdicon name="account-supervisor-circle" class="text-gray-500" />
+              Government Agencies</router-link
+            >
+          </li>
+          <li>
+            <router-link :to="{ name: 'About' }">
+              <mdicon name="information" class="text-gray-500" />
+              About</router-link
+            >
+          </li>
+          <li>
+            <span>
+              <mdicon name="phone" class="text-gray-500" />
+              Contact Us</span
+            >
           </li>
         </ul>
       </div>
       <a class="normal-case text-xl"
         ><div class="hidden lg:flex justify-start lg:w-0 lg:flex-1">
           <a href="/" class="z-10">
-            <span class="sr-only">Province</span>
+            <span class="sr-only">JPM</span>
             <img
-              class="h-24 w-auto sm:h-24"
-              src="../assets/img/province_logo_colored.gif"
+              class="h-24 w-auto ml-20 shadow-xl rounded-full"
+              src="../assets/img/jpm-icon-logo.png"
               alt=""
             />
           </a>
-          <a href="/" class="mt-2 ml-2 z-10">
+
+          <a href="/" class="mt-4 -ml-20 z-0 hidden xl:block">
             <span class="sr-only">Congress</span>
-            <img
-              class="h-20 w-auto sm:h-20"
-              src="../assets/img/logo_colored.gif"
-              alt=""
-            />
-          </a>
-          <a href="/" class="mt-4 -ml-28 z-0">
-            <span class="sr-only">Congress</span>
-            <img
-              class="h-20 w-auto sm:h-20"
-              src="../assets/img/title.gif"
-              alt=""
-            />
+            <img class="h-[78px] w-auto" src="../assets/img/title.gif" alt="" />
           </a></div
       ></a>
+    </div>
+    <div class="navbar-center flex lg:hidden z-20">
+      <a href="/" class="z-10">
+        <span class="sr-only">JPM</span>
+        <img
+          class="h-16 w-auto shadow-xl rounded-full"
+          src="../assets/img/jpm-icon-logo.png"
+          alt=""
+        />
+      </a>
     </div>
     <div class="navbar-center hidden lg:flex z-20">
       <ul class="menu menu-horizontal p-0">
@@ -155,9 +173,15 @@
                     Financial Assistance</span
                   >
                   <ul class="p-2 bg-base-100 shadow">
-                    <li><a>Overview</a></li>
+                    <li>
+                      <a :href="'/financial-assistance/overview'">Overview</a>
+                    </li>
                     <li><a>Resolutions</a></li>
-                    <li><a>Requirements</a></li>
+                    <li>
+                      <a :href="'/financial-assistance/requirement'"
+                        >Requirements</a
+                      >
+                    </li>
                   </ul>
                 </li>
                 <li tabindex="0">
@@ -166,9 +190,15 @@
                     Scholarship</span
                   >
                   <ul class="p-2 bg-base-100 shadow">
-                    <li><a>Overview</a></li>
+                    <li>
+                      <a :href="'/scholarship-program/overview'">Overview</a>
+                    </li>
                     <li><a>Resolutions</a></li>
-                    <li><a>Requirements</a></li>
+                    <li>
+                      <a :href="'/scholarship-program/requirement'"
+                        >Requirements</a
+                      >
+                    </li>
                   </ul>
                 </li>
                 <li tabindex="0">
@@ -214,18 +244,18 @@
             <li>
               <ul class="menu p-2">
                 <li tabindex="0">
-                  <span>
+                  <router-link :to="{ name: 'GovernmentAgencies' }">
                     <mdicon
                       name="account-supervisor-circle"
                       class="text-gray-500"
                     />
-                    Government Agencies</span
+                    Government Agencies</router-link
                   >
                 </li>
                 <li>
-                  <span>
+                  <router-link :to="{ name: 'About' }">
                     <mdicon name="information" class="text-gray-500" />
-                    About</span
+                    About</router-link
                   >
                 </li>
                 <li>
@@ -242,6 +272,32 @@
     </div>
     <div class="navbar-end">
       <!-- <a class="btn">Get started</a> -->
+      <div class="hidden lg:flex justify-start lg:w-0 lg:flex-1 gap-2">
+        <a href="/" class="z-10">
+          <span class="sr-only">JPM</span>
+          <img
+            class="h-20 w-auto mt-2"
+            src="../assets/img/jpm_logo_colored.png"
+            alt=""
+          />
+        </a>
+        <a href="/" class="z-10">
+          <span class="sr-only">Province</span>
+          <img
+            class="h-20 w-auto mt-2"
+            src="../assets/img/province_logo_colored.gif"
+            alt=""
+          />
+        </a>
+        <a href="/" class="mt-2 z-10">
+          <span class="sr-only">Congress</span>
+          <img
+            class="h-20 w-auto"
+            src="../assets/img/logo_colored.gif"
+            alt=""
+          />
+        </a>
+      </div>
     </div>
   </div>
 
@@ -252,25 +308,30 @@
       <a href="#" class="flex items-center mb-4 sm:mb-0">
         <img
           src="../assets/img/logo_colored.gif"
-          class="mr-3 h-16"
+          class="mr-3 h-24"
           alt="House of Representative Logo"
         />
         <img
           src="../assets/img/province_logo_colored.gif"
-          class="mr-3 h-16"
+          class="mr-3 h-24"
           alt="House of Representative Logo"
         />
         <img
-          src="../assets/img/jpm_logo_colored.gif"
-          class="mr-3 h-16"
-          alt="House of Representative Logo"
+          src="../assets/img/jpm-icon-logo.png"
+          class="mr-3 h-24"
+          alt="JPM Web Logo"
+        />
+        <img
+          src="../assets/img/jpm_logo_colored.png"
+          class="mr-3 h-24"
+          alt="JPM Web Logo"
         />
       </a>
       <ul
         class="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400"
       >
         <li>
-          <a href="#" class="mr-4 hover:underline md:mr-6">About</a>
+          <a href="/about" class="mr-4 hover:underline md:mr-6">About</a>
         </li>
         <li>
           <a href="#" class="hover:underline">Contact</a>
@@ -280,8 +341,8 @@
 
     <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400"
       >© 2022 <a href="#" class="hover:underline">JPM Palawan</a>. All Rights
-      Reserved. </span
-    >\
+      Reserved.
+    </span>
   </footer>
 </template>
 
